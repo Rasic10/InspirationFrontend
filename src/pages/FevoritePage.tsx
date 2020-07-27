@@ -2,22 +2,18 @@ import {
   IonContent,
   IonHeader,
   IonPage,
+  IonTitle,
   IonToolbar,
-  IonFooter,
-  IonButton,
   IonImg,
   IonSpinner,
-  IonIcon,
-  IonItem,
-  IonInput,
 } from "@ionic/react";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 //import ExploreContainer from "../components/ExploreContainer";
 import "./Page.scss";
 //import SongCard from "../components/SongCard";
 //import SongCard2 from "../components/SongCard2";
 import SongCard3 from "../components/SongCard3";
-import { reader, searchCircleOutline, searchCircleSharp } from "ionicons/icons";
 import { API_URL } from "../config";
 
 interface ISong {
@@ -35,9 +31,9 @@ interface ISong {
   fevorite: boolean;
 }
 
-const Page: React.FC = () => {
+const FevoritePage: React.FC = () => {
+  const { name } = useParams<{ name: string }>();
   const [songs, setSongs] = useState<ISong[]>([]);
-  const [search, setSearch] = useState("");
   //const [s, setS] = useState([]);
 
   useEffect(() => {
@@ -59,7 +55,6 @@ const Page: React.FC = () => {
       })
       .then((result) => {
         result = [...result].reverse();
-
         setSongs(result);
       })
       .catch((error) => console.log("error", error));
@@ -83,16 +78,13 @@ const Page: React.FC = () => {
         if (!response.ok) {
           throw new Error(response.statusText);
         }
-        console.log("prvi");
         return response.json();
       })
       .then((result) => {
         result = [...result].reverse();
-        console.log("drugi");
         setSongs(result);
       })
       .catch((error) => console.log("error", error));
-    console.log("trece");
   };
 
   return (
@@ -108,48 +100,25 @@ const Page: React.FC = () => {
       </IonHeader>
 
       <IonContent>
-        <IonItem id="searchItem">
-          <IonIcon ios={searchCircleOutline} md={searchCircleSharp} />
-          <IonInput
-            id="searchInput"
-            type="text"
-            placeholder="search song by title"
-            onIonChange={(e) => setSearch((e.target as HTMLInputElement).value)}
-          ></IonInput>
-        </IonItem>
-
-        {/* <ExploreContainer name={name} /> */}
-        {/* <SongCard /> */}
-        {/* {songs === [] ? (
-          <p>Loading...</p>
-        ) : (
-          <SongCard2 songs={songs} songs1={songs[1]} />
-        )} */}
-        {/* {s.map((sa) => {
-          return <SongCard3 key={sa.songID} songs={[]} songs1={sa} />;
-        })} */}
-
+        <IonHeader collapse="condense">
+          <IonToolbar>
+            <IonTitle size="large">{name}</IonTitle>
+          </IonToolbar>
+        </IonHeader>
         {songs.length === 0 ? (
           <IonSpinner id="spinner" name="circles" />
         ) : (
           songs.map((song) => {
-            return <SongCard3 key={song.songID} song={song} search={search} />;
+            return song.fevorite === true ? (
+              <SongCard3 key={song.songID} song={song} search="" />
+            ) : (
+              ""
+            );
           })
         )}
       </IonContent>
-
-      <IonFooter>
-        {sessionStorage.getItem("userName") === null ? (
-          <div></div>
-        ) : (
-          <IonButton id="addBtn" color="gold" routerLink="/addInspiration">
-            Add your inspiration
-            <IonIcon slot="start" icon={reader} />
-          </IonButton>
-        )}
-      </IonFooter>
     </IonPage>
   );
 };
 
-export default Page;
+export default FevoritePage;

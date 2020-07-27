@@ -1,0 +1,81 @@
+ion-content {
+  --background: url("https://i.ya-webdesign.com/images/music-notes-background-png-11.png")
+    no-repeat cover fixed center;
+
+  background: url("https://i.ya-webdesign.com/images/music-notes-background-png-11.png")
+    no-repeat fixed center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+}
+
+ion-card {
+  background-image: url("https://www.picawall.com/wp-content/uploads/2018/04/11242730.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+}
+
+#cardText {
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  #cardTitle {
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+  }
+  #cardTextArea {
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    font-size: 19px;
+    /* height: 50px; */
+  }
+
+  #cardLabel {
+    margin-left: 3%;
+    color: black;
+    font-weight: bold;
+    font-size: 19px;
+  }
+
+  #cardIcon {
+    color: red;
+  }
+
+  #cardLinkTitle {
+    color: rgb(38, 38, 86);
+  }
+
+  #deleteButton {
+    position: absolute;
+    right: 3%;
+  }
+
+  #editButton {
+    margin-left: 3%;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  #cardTitle {
+    text-align: center;
+    font-size: 20px;
+  }
+  #cardTextArea {
+    font-size: 20px;
+  }
+
+  #cardLabel {
+    margin-left: 3%;
+    color: black;
+    font-weight: bold;
+    font-size: 19px;
+  }
+
+  #cardIcon {
+    color: red;
+  }
+}

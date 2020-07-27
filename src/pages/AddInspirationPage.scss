@@ -1,0 +1,38 @@
+@media screen and (max-width: 600px) {
+  #postContent {
+    text-align: center;
+
+    #postTitle {
+      margin-left: 15%;
+      margin-right: 15%;
+      margin-top: 10%;
+      opacity: 80%;
+      border-radius: 25px;
+    }
+
+    #postText {
+      margin-left: 15%;
+      margin-right: 15%;
+      margin-top: 5%;
+      opacity: 80%;
+      border-radius: 25px;
+    }
+
+    #inputTitle {
+      text-align: center;
+      font-weight: bold;
+    }
+
+    #inputTextArea {
+      text-align: center;
+      font-weight: bold;
+    }
+
+    #addButton {
+      margin-top: 5%;
+    }
+  }
+}
+
+@media screen and (min-width: 601px) {
+}
